@@ -1,4 +1,6 @@
 import DataResource from './resources/data.resource';
+import ClassResource from './resources/class.resource';
+import { ClassType } from './types';
 
 export class IoCContainer {
   private _resources;
@@ -11,18 +13,38 @@ export class IoCContainer {
     return this._resources.has(name);
   }
 
-  _registerResource(name: string, resource: DataResource) {
-    this._resources.set(name, resource);
+  _resolveResourceDependency(resourceName: string, dependencyName: string) {
+    if (this.has(dependencyName)) {
+      return this._resources.get(dependencyName).resolve();
+    }
+
+    throw new Error(`Can't find dependency '${dependencyName}' for '${resourceName}' resource`);
   }
 
-  register(name: string, entity: any) {
+  _registerResource(name: string, entity: ClassType<unknown>, isClass?: boolean) {
     if (this.has(name)) {
       throw new Error(`${name} resource is already registered in the container!`);
     }
 
-    const resource = new DataResource(entity);
+    let resource;
 
-    this._registerResource(name, resource);
+    if (isClass) {
+      resource = new ClassResource(entity, this._resolveResourceDependency.bind(this, name));
+    } else {
+      resource = new DataResource(entity);
+    }
+
+    this._resources.set(name, resource);
+  }
+
+  register(name: string, entity: any) {
+    this._registerResource(name, entity);
+
+    return this;
+  }
+
+  registerClass(name: string, entity: any) {
+    this._registerResource(name, entity, true);
 
     return this;
   }
