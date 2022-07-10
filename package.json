@@ -1,8 +1,31 @@
 {
   "name": "ioc-lite",
-  "version": "0.0.1",
-  "description": "IoC container",
-  "main": "index.js",
-  "author": "Nazar Bulych",
-  "license": "MIT"
+  "version": "1.0.0",
+  "description": "IoC Container library which helps to keep inversion of control peinciple by using DI pattern for javascript/typescript projects",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf ./dist && mkdir dist",
+    "build": "yarn clean && tsc && tsc",
+    "publish": "yarn build && npm publish"
+  },
+  "author": "Nazar Bulych <nazar.bnm@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nazar-bnm/ioc-lite"
+  },
+  "keywords": [
+    "IoC",
+    "inversion of control",
+    "DIP",
+    "dependency inversion principle",
+    "DI",
+    "dependency injection",
+    "IoC Container",
+    "inversion of control container"
+  ]
 }
