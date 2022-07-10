@@ -1,0 +1,16 @@
+# Dependencies
+node_modules
+
+# test coverage
+coverage
+
+# build folder
+dist
+
+# Miscellaneous
+.DS_Store
+yarn-error.log
+
+# Editors
+.idea
+.vscode

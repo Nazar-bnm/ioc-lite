@@ -1,0 +1,8 @@
+{
+  "name": "ioc-lite",
+  "version": "0.0.1",
+  "description": "IoC container",
+  "main": "index.js",
+  "author": "Nazar Bulych",
+  "license": "MIT"
+}
