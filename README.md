@@ -1,6 +1,6 @@
 # ioc-lite
-This is a lightweight IoC Container library which helps to keep inversion of control peinciple by using DI pattern for javascript/typescript projects,
-heavily inspired by [libioc](https://www.npmjs.com/package/libioc)
+This is a lightweight IoC Container library which helps to keep inversion of control principle by using DI pattern for javascript/typescript projects,
+heavily inspired by [libioc](https://www.npmjs.com/package/libioc).
 It can be used in the browser as well as in node.js server code.
 
 ## Basic Usage:

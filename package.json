@@ -1,12 +1,12 @@
 {
   "name": "ioc-lite",
   "version": "1.0.0",
-  "description": "IoC Container library which helps to keep inversion of control peinciple by using DI pattern for javascript/typescript projects",
+  "description": "IoC Container library which helps to keep inversion of control principle by using DI pattern for javascript/typescript projects",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./dist && mkdir dist",
-    "build": "yarn clean && tsc && tsc",
+    "build": "yarn clean && tsc",
     "publish": "yarn build && npm publish"
   },
   "author": "Nazar Bulych <nazar.bnm@gmail.com>",
