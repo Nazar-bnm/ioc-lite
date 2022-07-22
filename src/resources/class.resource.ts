@@ -18,6 +18,6 @@ export default class ClassResource {
   resolve() {
     const dependencies = this._resolveDependencies();
 
-    return new this._resource(dependencies);
+    return new this._resource(...dependencies);
   }
 }
