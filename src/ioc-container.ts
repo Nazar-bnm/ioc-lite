@@ -12,7 +12,7 @@ export class IoCContainer<T extends Record<string, any>> {
     return this._resources.has(name);
   }
 
-  _resolveResourceDependency<K extends keyof T>(resourceName: K, dependencyName: K) {
+  private _resolveResourceDependency<K extends keyof T>(resourceName: K, dependencyName: K) {
     if (this.has(dependencyName)) {
       return this._resources.get(dependencyName).resolve();
     }
@@ -20,30 +20,26 @@ export class IoCContainer<T extends Record<string, any>> {
     throw new Error(`Can't find dependency '${String(dependencyName)}' for '${String(resourceName)}' resource`);
   }
 
-  _registerResource<K extends keyof T>(name: K, entity: T[K], isClass?: boolean) {
+  private _registerResource<K extends keyof T>(name: K, resource: DataResource | ClassResource) {
     if (this.has(name)) {
       throw new Error(`${String(name)} resource is already registered in the container!`);
-    }
-
-    let resource;
-
-    if (isClass) {
-      resource = new ClassResource(entity, this._resolveResourceDependency.bind(this, name));
-    } else {
-      resource = new DataResource(entity);
     }
 
     this._resources.set(name, resource);
   }
 
   register<K extends keyof T>(name: K, entity: T[K]) {
-    this._registerResource(name, entity);
+    const resource = new DataResource(entity);
+
+    this._registerResource(name, resource);
 
     return this;
   }
 
   registerClass<K extends keyof T>(name: K, service: T[K]) {
-    this._registerResource(name, service, true);
+    const resource = new ClassResource(service, this._resolveResourceDependency.bind(this, name));
+
+    this._registerResource(name, resource);
 
     return this;
   }

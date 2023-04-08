@@ -27,7 +27,7 @@ export interface IConfig {
   port: number;
 }
 
-export const config: IConfig= { host: 'localhost', port: 8080 };
+export const config: IConfig = { host: 'localhost', port: 8080 };
 
 export class Logger {
   log(message) {
@@ -76,7 +76,7 @@ const http = ioc.resolve('http');
 Resource type checking:
 ```typescript
 // Typescript does not allow us to register the wrong resource:
-ioc.registerClass('logger', HttpService); // -> Argument of type 'typeof HttpService' is not assignable to parameter of type 'typeof Logger'.
+ioc.registerClass('logger', HttpService); // Argument of type 'typeof HttpService' is not assignable to parameter of type 'typeof Logger'.
 
 // Typescript does not allow us to resolve unexisting resource:
 ioc.resolve('UnregisterClass'); // Argument of type '"UnregisterClass"' is not assignable to parameter of type 'keyof IoCResources'.'
