@@ -1,7 +1,7 @@
 # ioc-lite
 This is a lightweight IoC Container library which helps to keep inversion of control principle by using DI pattern for typescript/javascript projects, inspired by [libioc](https://www.npmjs.com/package/libioc).
 
-It can be used in the browser as well as in node.js code.
+It can be used in the browser as well as in Node.js environment.
 
 Supporting resource type checking with TypeScript Generics.
 
@@ -11,6 +11,7 @@ Creating ioc container:
 import IoCContainer from 'ioc-lite';
 import { Logger, HttpService, IConfig } from './services';
 
+// using a generic type allows you to control which resources can be registered.
 type IoCResources = {
   config: IConfig;
   logger: typeof Logger;
@@ -30,6 +31,9 @@ export interface IConfig {
 export const config: IConfig = { host: 'localhost', port: 8080 };
 
 export class Logger {
+  // to ensure that a class has only one instance, set the static property $singleton to true
+  static $singleton = true;
+
   log(message) {
     process.stdout.write(message);
   }
