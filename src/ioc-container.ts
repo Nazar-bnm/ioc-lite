@@ -1,5 +1,6 @@
 import DataResource from './resources/data.resource';
 import ClassResource from './resources/class.resource';
+import { InstanceTypeOrValue } from './types';
 
 export class IoCContainer<T extends Record<string, any>> {
   private _resources: T;
@@ -46,7 +47,7 @@ export class IoCContainer<T extends Record<string, any>> {
 
   resolve<K extends keyof T>(name: K) {
     if (this.has(name)) {
-      return this._resources.get(name).resolve();
+      return this._resources.get(name).resolve() as InstanceTypeOrValue<T[K]>;
     }
 
     return null;
